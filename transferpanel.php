@@ -53,7 +53,7 @@ $email  = $_SESSION['email'];
       </div>
 </div>
     <?php
-      echo "Welcome $username your balance is $balance and email is $email ";
+      echo "Welcome $username your balance is  ";
     ?>
   <form action='transfer.php' method='REQUEST' enctype="multipart/form-data">
         <div class="test">

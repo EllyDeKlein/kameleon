@@ -10,6 +10,9 @@ $sql = "INSERT into transactions (from_user, to_user, amount) VALUES ('$fromuser
 $result 		= mysqli_query($conn, $sql) or die(mysqli_error($conn));
 echo $sql;
 
+
+echo "$result";
+
 /*
 
 

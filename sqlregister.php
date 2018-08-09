@@ -1,18 +1,12 @@
 <?php
-
   require_once('verbinding.php');
-  $conn = mysqli_connect("localhost", "phpmyadmin", "", "kameleon");
-  echo "connected to database";
   if(isset($_POST) & !empty($_POST))
   {
   $username			     = mysqli_real_escape_string($conn, $_POST['rusername']);
   $email			       = mysqli_real_escape_string($conn, $_POST['remail']);
   $password	         = ($_POST['rpassword']);
   $passwordagain	   = ($_POST['rpassword_2']);
-
   if($password == $passwordagain)
-
-
   { //check double entries voor email
   $usernamesql = "SELECT * FROM `users` WHERE username='$username'";
   $usernameres = mysqli_query($conn, $usernamesql);

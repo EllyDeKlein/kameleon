@@ -1,17 +1,42 @@
 <?php
 require_once('verbinding.php');
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <style>
-    .row div{padding: 20px 10px;border: 1px solid;}
-    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Kameleon</title>
+    <style>.carousel-inner > .item > img { width:100%; height:570px; } </style>
+
+     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+		<nav class="navbar navbar-dark bg-dark">
+	<!-- Navbar content -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarText">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="register.php">Register</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="login.php">My Account</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Customer Service</a>
+			</li>
+		</ul>
+	</div>
+	<a class="navbar-brand" href="index.php">Kameleon</a>
+</nav>
+<br><br>
       <div class='jumbotron jumbotron-fluid bg-success text-white text-center' style="background: #aaa;">
         <div class="container">
         <h1> Register for Kameleon</h1>

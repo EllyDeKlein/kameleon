@@ -25,6 +25,7 @@
   if($result)
   {
   echo $smsg = "Registratie succes";
+  header('Location: transferpanel.php');
   /* $id = mysqli_insert_id($conn); */ //to insert id from the database to use
   //$id = mysqli_insert_id($conn);voor later om id mee te geven denk ik
   }else

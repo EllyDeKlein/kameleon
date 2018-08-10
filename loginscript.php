@@ -2,6 +2,7 @@
 session_start();
 require_once('verbinding.php');
 print_r($_SESSION);
+
 if(isset($_SESSION['username']) & !empty($_SESSION['username']))
 {
   echo "already logged in";
@@ -25,12 +26,12 @@ echo var_dump($_SESSION);
   if($count == 1)
 {
   echo "User is logged in $username";
-$_SESSION['username'] = $username;
+  $_SESSION['username'] = $username;
 }
 else
 {
   echo "User does not exists, please register first!";
 }
 }
-
+header('location:transferpanel.php');
   ?>

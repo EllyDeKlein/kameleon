@@ -1,17 +1,15 @@
 <?php
-session_start();
-require_once('verbinding.php');
-if(!isset($_SESSION['username']) & empty($_SESSION['username'])){
-header('location:index.php'); //redirect naar index.php als je niet ingelogd bent.
-}
-$username = $_SESSION['username'];
-$balance = $_SESSION['balance'];
-$email  = $_SESSION['email'];
-
+  session_start();
+  require_once('verbinding.php');
+  if(!isset($_SESSION['username']) & empty($_SESSION['username'])){
+  header('location:index.php'); //redirect naar index.php als je niet ingelogd bent.
+  }
+  $username = $_SESSION['username'];
+  $id     = $_SESSION['userid'];
 ?>
 <!DOCTYPE html>
-<?php
- require_once('verbinding.php');
+  <?php
+   require_once('verbinding.php');
   ?>
   <!doctype html>
   <html lang="en">
@@ -53,7 +51,17 @@ $email  = $_SESSION['email'];
       </div>
 </div>
     <?php
-      echo "Welcome $username your balance is  ";
+  echo "Welcome $username your balance is";
+  $sql = "SELECT * FROM balanceviews WHERE username = '$username' LIMIT 1";
+  $result = $conn->query($sql);
+  /*if ($result->num_rows > 0) {
+      // output data of each row
+      while($row = $result->fetch_assoc()) {
+          echo $row["balanceview"];
+      }
+  } else {
+      echo "0 results";
+  }*/
     ?>
   <form action='transfer.php' method='REQUEST' enctype="multipart/form-data">
         <div class="test">
@@ -66,9 +74,6 @@ $email  = $_SESSION['email'];
           <input type='submit' name='submit' class='knop' value='send'><br>
         </div>
   </form>
-
-
-
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

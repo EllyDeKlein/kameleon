@@ -4,15 +4,12 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Kameleon</title>
     <style>.carousel-inner > .item > img { width:100%; height:570px; } </style>
-
      <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-
   <body>
     <nav class="navbar navbar-dark bg-dark">
   <!-- Navbar content -->
@@ -34,9 +31,6 @@
   </div>
   <a class="navbar-brand" href="index.php">Kameleon</a>
 </nav>
-
-
-
 <hr><hr>
 <div id="carouselExampleIndicators" class="carousel slide" style="width: 700px; height:150px; margin: 0 auto" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -64,9 +58,6 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

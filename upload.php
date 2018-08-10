@@ -1,4 +1,14 @@
 <?php
+session_start();
+require_once('verbinding.php');
+if(!isset($_SESSION['username']) & empty($_SESSION['username'])){
+header('location:index.php'); //redirect naar index.php als je niet ingelogd bent.
+}
+$username = $_SESSION['username'];
+
+?>
+<!DOCTYPE html>
+<?php
  require_once('verbinding.php');
   ?>
   <!doctype html>
@@ -16,9 +26,9 @@
   <body>
   <nav class="navbar navbar-dark bg-dark">
   <!-- Navbar content -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
@@ -36,44 +46,27 @@
 </nav><br><br>
       <div class='jumbotron jumbotron-fluid bg-success text-white text-center' style="background: #aaa;">
         <div class="container">
-        <h1> Register for Kameleon</h1>
+        <h1>MUpload </h1>
         <p>Free colors of currency</p>
       </div>
 </div>
-<br><br>
-<!--- cards --->
-<div class="container">
-<!--- cards --->
-<div class="card-deck">
-  <div class="card">
-    <img class="card-img-top img-fluid" src="kameleon.svg" alt="Card image cap">
-    <div class="card-block">
-      <h4 class="card-title">Login!</h4>
-      <p class="card-text"> Or register for free of 1 euro per minuut!</p>
-    </div>
-</div>
-  </div>
-<br><br>
-    <form action='sqlregister.php' method='POST' enctype="multipart/form-data">
-          <div class="test">
-            <b>Register here</b><br>
-            <label>Username</label> <input type='text' name='rusername' value=''><br>
-          </div>
-          <div class="test">
-            <label>Email</label> <input type='text' name='remail' value=''><br>
-          </div>
-          <div class="test">
-            <label>Password</label> <input type='password' name='rpassword' value=''><br>
-          </div>
-          <div class="test">
-            <label>Confirm password</label>
-            <input type="password" name='rpassword_2'>
-          </div>
-          <div class="test">
-            <input type='submit' name='submit' class='knop'><br>
-          </div>
-    </form>
-    <a href="index.php" class="button5">Back to home</a>
+    <?php
+      echo "Welcome $username please chose amount to upload to customer  ";
+    ?>
+  <form action='upload.php' method='REQUEST' enctype="multipart/form-data">
+        <div class="test">
+          <b>Upload credits for customer</b><br>
+          <label>Amount</label> <input type='text' name='amount' value=''><br>
+        </div>
+        <div class="test">
+          <label>To which Kameleon account</label> <input type='text' name='touser' value=''><br>
+        </div>
+          <input type='submit' name='submit' class='knop' value='send'><br>
+        </div>
+  </form>
+
+
+
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

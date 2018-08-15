@@ -4,6 +4,11 @@
   $value = $_REQUEST['amount'];
   $touser = $_REQUEST['touser'];
   $fromuser = $_SESSION['username'];
+
+
+
+
+
   $sql = "INSERT into transactions (from_user, to_user, amount) VALUES ('$fromuser', '$touser','$value')";
   $result 		= mysqli_query($conn, $sql) or die(mysqli_error($conn));
   echo $sql;

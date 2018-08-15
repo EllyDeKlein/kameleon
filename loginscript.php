@@ -19,14 +19,18 @@ if(filter_var($username, FILTER_VALIDATE_EMAIL)){ //hiermee herkent hij ook de e
   $sql .= "username='$username'";
 }
 $sql .= " AND password='$password'";
-$sql;
- $lres = mysqli_query($conn, $sql); //put it in a array toch ?
-echo   $count = mysqli_num_rows($lres); //verwacht 1 dacht ik
-echo var_dump($_SESSION);
+$lres = mysqli_query($conn, $sql); //put it in a array toch ?
+
+$row = mysqli_fetch_array($lres);
+
+$count = mysqli_num_rows($lres); //verwacht 1 dacht ik
+
+
   if($count == 1)
 {
   echo "User is logged in $username";
   $_SESSION['username'] = $username;
+  $_SESSION['user_id'] = $row["id"];
 }
 else
 {

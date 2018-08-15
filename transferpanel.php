@@ -5,7 +5,7 @@
   header('location:index.php'); //redirect naar index.php als je niet ingelogd bent.
   }
   $username = $_SESSION['username'];
-  $id     = $_SESSION['userid'];
+  $user_id     = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
   <?php
@@ -52,16 +52,20 @@
 </div>
     <?php
   echo "Welcome $username your balance is";
-  $sql = "SELECT * FROM balanceviews WHERE username = '$username' LIMIT 1";
-  $result = $conn->query($sql);
-  /*if ($result->num_rows > 0) {
-      // output data of each row
-      while($row = $result->fetch_assoc()) {
-          echo $row["balanceview"];
-      }
-  } else {
-      echo "0 results";
-  }*/
+
+  $sql = "SELECT * FROM users WHERE id='$user_id'";
+  $result = mysqli_query($conn, $sql);
+
+  if($row = mysqli_fetch_array($result)) {
+      $username = $row["username"];
+
+      $sql = "SELECT balance FROM balanceview WHERE user_id=$user_id";
+      $result = mysqli_query($conn, $sql);
+
+      $row = mysqli_fetch_array($result);
+      echo "Hallo $username, jouw balans is: " .$row["balance"] . " euro";
+    }
+
     ?>
   <form action='transfer.php' method='REQUEST' enctype="multipart/form-data">
         <div class="test">

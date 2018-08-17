@@ -3,12 +3,10 @@
   require_once('verbinding.php');
   $value = $_REQUEST['amount'];
   $touser = $_REQUEST['touser'];
-  $fromuser = $_SESSION['username'];
-
-
-
-
-
+  $fromuser =  $_SESSION['user_id'];
+/*
+die code hier van net en dan de if else
+*/
   $sql = "INSERT into transactions (from_user, to_user, amount) VALUES ('$fromuser', '$touser','$value')";
   $result 		= mysqli_query($conn, $sql) or die(mysqli_error($conn));
   echo $sql;

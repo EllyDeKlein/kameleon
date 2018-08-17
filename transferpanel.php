@@ -1,15 +1,15 @@
 <?php
-  session_start();
-  require_once('verbinding.php');
-  if(!isset($_SESSION['username']) & empty($_SESSION['username'])){
-  header('location:index.php'); //redirect naar index.php als je niet ingelogd bent.
-  }
-  $username = $_SESSION['username'];
-  $user_id     = $_SESSION['user_id'];
+    session_start();
+    require_once('verbinding.php');
+    if(!isset($_SESSION['username']) & empty($_SESSION['username'])){
+    header('location:index.php'); //redirect naar index.php als je niet ingelogd bent.
+    }
+    $username = $_SESSION['username'];
+    $user_id     = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
   <?php
-   require_once('verbinding.php');
+    require_once('verbinding.php');
   ?>
   <!doctype html>
   <html lang="en">
@@ -44,44 +44,48 @@
   </div>
   <a class="navbar-brand" href="index.php">Kameleon</a>
 </nav><br><br>
-      <div class='jumbotron jumbotron-fluid bg-success text-white text-center' style="background: #aaa;">
-        <div class="container">
-        <h1>Members page</h1>
-        <p>Free colors of currency</p>
-      </div>
-</div>
+  <h1 class="display-3">Members area </h1>
+  <br>
     <?php
-  echo "Welcome $username your balance is";
+        $sql = "SELECT * FROM users WHERE id='$user_id'";
+        $result = mysqli_query($conn, $sql);
 
-  $sql = "SELECT * FROM users WHERE id='$user_id'";
-  $result = mysqli_query($conn, $sql);
+        if($row = mysqli_fetch_array($result))
+        {
+            $username = $row["username"];
 
-  if($row = mysqli_fetch_array($result)) {
-      $username = $row["username"];
+            $sql = "SELECT balance FROM balanceview WHERE user_id=$user_id";
+            $result = mysqli_query($conn, $sql);
 
-      $sql = "SELECT balance FROM balanceview WHERE user_id=$user_id";
-      $result = mysqli_query($conn, $sql);
-
-      $row = mysqli_fetch_array($result);
-      echo "Hallo $username, jouw balans is: " .$row["balance"] . " euro";
-    }
-
+            $row = mysqli_fetch_array($result);
+            echo "Hallo $username, jouw balans is: " .$row["balance"] . " euro";
+          }
     ?>
-  <form action='transfer.php' method='REQUEST' enctype="multipart/form-data">
-        <div class="test">
-          <b>Transfer amount</b><br>
-          <label>Amount</label> <input type='text' name='amount' value=''><br>
-        </div>
-        <div class="test">
-          <label>To which Kameleon account</label> <input type='text' name='touser' value=''><br>
-        </div>
-          <input type='submit' name='submit' class='knop' value='send'><br>
-        </div>
-  </form>
+    <br><br>
+      <form action='transfer.php' method='REQUEST' enctype="multipart/form-data">
+            <div class="test">
+              <b>Transfer amount</b><br><br>
+              <label>Amount</label> <input type='text' name='amount' value=''><br>
+            </div>
+            <div class="test">
+              <label>To which Kameleon account</label> <input type='text' name='touser' value=''><br>
+            </div>
+              <input type='submit' name='submit' class='knop' value='send'><br>
+            </div>
+      </form>
+      <br>
+      <a href='logout.php'> Logout </a>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
+  <footer>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+  <a class="navbar-brand" href="register.php">Register</a>
+  <a class="navbar-brand" href="login.php">My Account</a>
+  <a class="navbar-brand" href="about.php">About Us</a>
+</nav>
+  </footer>
 </html>

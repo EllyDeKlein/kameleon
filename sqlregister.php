@@ -24,8 +24,9 @@
   $result 		= mysqli_query($conn, $sqltest) or die(mysqli_error($conn)); //is used to put it in to database table ? die ik nu in een result $variabel stop
   if($result)
   {
-  echo $smsg = "Registratie succes";
-  header('Location: transferpanel.php');
+  echo $smsg = "Registratie succes
+  ";
+  header('Location: regsucces.php');
   /* $id = mysqli_insert_id($conn); */ //to insert id from the database to use
   //$id = mysqli_insert_id($conn);voor later om id mee te geven denk ik
   }else
@@ -34,5 +35,5 @@
   }
   }
   }
-  var_dump($_REQUEST);
+  echo "Registration failed back to register form <a href='register.php'> Click here </a>";
 ?>

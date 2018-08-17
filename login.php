@@ -16,45 +16,46 @@ require_once('verbinding.php');
      <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-		<nav class="navbar navbar-dark bg-dark">
-	<!-- Navbar content -->
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarText">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="register.php">Register</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="login.php">My Account</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Customer Service</a>
-			</li>
-		</ul>
-	</div>
-	<a class="navbar-brand" href="index.php">Kameleon</a>
-</nav>
-<br><br>
-      <div class='jumbotron jumbotron-fluid bg-success text-white text-center' style="background: #aaa;">
-        <div class="container">
-        <h1> Register for Kameleon</h1>
-        <p>Free colors of pay</p>
-      </div>
-</div>
+    <nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar content -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="register.php">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login.php">My Account</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.php">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="customerservice.php">Customer Service</a>
+      </li>
+    </ul>
+    </div>
+    <a class="navbar-brand" href="index.php">Kameleon</a>
+    </nav>
+
   <form action="loginscript.php" method="post" > <!--- original is test.php --->
     <h2>Login</h2>
     <input type="text" name="username" placeholder="username">
     <input type="password" name="password"  placeholder="Password">
     <button class="btn" type="submit" name="login_btn">Sign in</button>
   </form>
-<?php
-var_dump($_POST);
- ?>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </body>
+  <footer>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+  <a class="navbar-brand" href="register.php">Register</a>
+  <a class="navbar-brand" href="transferpanel.php">My Account</a>
+  <a class="navbar-brand" href="about.php">About Us</a>
+</nav>
+  </footer>
 </html>

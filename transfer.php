@@ -7,17 +7,17 @@
 /*
 die code hier van net en dan de if else
 */
+  $userid = $_SESSION['user_id'];
+  $test = "SELECT balance FROM balanceview WHERE user_id=$userid";
+  $run = mysqli_query($conn, $test);
+  while ($row = $run -> fetch_assoc()) {
+    $testwo = $row['balance'];
+  }
+  if ($testwo > 0) {
   $sql = "INSERT into transactions (from_user, to_user, amount) VALUES ('$fromuser', '$touser','$value')";
   $result 		= mysqli_query($conn, $sql) or die(mysqli_error($conn));
-  echo $sql;
-  echo "$result";
-  /*
-  "INSERT INTO `users` (username, email, password) VALUES ('$username', '$email', '$password')";
-
-  $updatestatement = mysqli_prepare($conn, "UPDATE users SET balance = (balance - [amount (amount)]) WHERE user = ? AND password = ? ");
-  */
-
-  /*
-  UPDATE users SET balance = balance + 50 WHERE id = 1
-  } */
+  echo "Sucess!";
+}else{
+  echo "Failure";
+}
 ?>

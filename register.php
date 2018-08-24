@@ -1,5 +1,9 @@
 <?php
  require_once('verbinding.php');
+ include('config.php');
+ include('recaptchalib.php');
+ $response = null;
+ $reCaptcha = new ReCaptcha($secret);
   ?>
   <!doctype html>
   <html lang="en">
@@ -13,7 +17,7 @@
       <style>.carousel-inner > .item > img { width:100%; height:570px; } </style>
        <link rel="stylesheet" type="text/css" href="style.css">
        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
+       <script src='https://www.google.com/recaptcha/api.js'></script>
        <!---script voor de username availability Jquery en ajax --->
        <script type="text/javascript">
         $(document).ready(function() {
@@ -90,6 +94,9 @@
             <label>Confirm password</label>
             <input type="password" name='rpassword_2'>
           </div>
+<div class="g-recaptcha" data-sitekey="6Ld9AmwUAAAAANmPN7UPovOcfIBRvw0rYXP0DRUj"></div>
+
+
           <div class="test">
             <input type='submit' name='submit' class='knop'><br>
           </div>

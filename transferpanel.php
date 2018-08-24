@@ -7,65 +7,78 @@
             $username = $_SESSION['username'];
             $user_id     = $_SESSION['user_id'];
         ?>
-        <!DOCTYPE html>
-          <?php
-            require_once('verbinding.php');
-          ?>
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <!-- Required meta tags -->
-              <meta charset="utf-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-              <!-- Bootstrap CSS -->
-              <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-              <title>Kameleon</title>
-              <style>.carousel-inner > .item > img { width:100%; height:570px; } </style>
-               <link rel="stylesheet" type="text/css" href="style.css">
-            </head>
-          <body>
-          <nav class="navbar navbar-dark bg-dark">
-          <!-- Navbar content -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="register.php">Register</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="login.php">My Account <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Customer Service</a>
-              </li>
-            </ul>
-          </div>
-          <a class="navbar-brand" href="index.php">Kameleon</a>
-        </nav><br><br>
-          <h1 class="display-3">Members area </h1>
-          <br>
-            <?php
-                $sql = "SELECT * FROM users WHERE id='$user_id'";
-                $result = mysqli_query($conn, $sql);
+  <!DOCTYPE html>
+    <?php
+      require_once('verbinding.php');
+    ?>
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <title>Kameleon</title>
+        <style>.carousel-inner > .item > img { width:100%; height:570px; } </style>
+         <link rel="stylesheet" type="text/css" href="style.css">
+      </head>
+    <body>
+    <nav class="navbar navbar-dark bg-dark">
+    <!-- Navbar content -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="register.php">Register</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="login.php">My Account <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Customer Service</a>
+        </li>
+      </ul>
+    </div>
+    <a class="navbar-brand" href="index.php">Kameleon</a>
+  </nav><br><br>
+    <h1 class="display-3">Members area </h1>
+    <br>
+  <?php
+    $sql = "SELECT * FROM users WHERE id='$user_id'";
+    $result = mysqli_query($conn, $sql);
 
-                if($row = mysqli_fetch_array($result))
-                {
-                    $username = $row["username"];
-                    $balance = $row['balance'];
-                    if ($balance < 0) {
-                      echo "Okay";
-                    }
-                    $sql = "SELECT balance FROM balanceview WHERE user_id=$user_id";
-                    $result = mysqli_query($conn, $sql);
+    if($row = mysqli_fetch_array($result))
+    {
+      $username = $row["username"];
+      $balance = $row['balance'];
+      if ($balance < 0) {
+        echo "Okay";
+      }
+      $sql = "SELECT balance FROM balanceview WHERE user_id=$user_id";
+      $result = mysqli_query($conn, $sql);
 
-                    $row = mysqli_fetch_array($result);
-                    echo "Hallo $username, jouw balans is: " .$row["balance"] . " euro";
-                  }
-            ?>
-            <br><br>
-              <form action='transfer.php' method='REQUEST' enctype="multipart/form-data">
+      $row = mysqli_fetch_array($result);
+      echo "Hallo $username";
+    }
+
+    $sql2 = "SELECT to_user as user_id, sum(x) as balance from ( select to_user, amount as x from transactions as ta UNION ALL select from_user, 0-amount as x from transactions as tb ) tC WHERE to_user = 7 group by to_user";
+
+    $sql2 = "SELECT balance FROM balanceview WHERE user_id=$user_id";
+    $result2 = mysqli_query($conn, $sql2);
+
+    if($row2 = mysqli_fetch_array($result2))
+    {
+      $balance = $row2['balance'];
+      $result2 = mysqli_query($conn, $sql2);
+      $row2 = mysqli_fetch_array($result2);
+      echo " your balance is " .$row2["balance"] . " euro";
+    }
+      ?>
+              <br><br>
+              <form action='ahad.php' method='REQUEST' enctype="multipart/form-data">
                     <div class="test">
                       <b>Transfer amount</b><br><br>
                       <label>Amount</label> <input type='text' name='amount' value=''><br>
@@ -76,8 +89,8 @@
                       <input type='submit' name='submit' class='knop' value='send'><br>
                     </div>
               </form>
-              <br>
-              <a href='logout.php'> Logout </a>
+                <br>
+                <a href='logout.php'> Logout </a>
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
             <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -86,9 +99,9 @@
           </body>
           <footer>
             <nav class="navbar fixed-bottom navbar-dark bg-dark">
-          <a class="navbar-brand" href="register.php">Register</a>
-          <a class="navbar-brand" href="login.php">My Account</a>
-          <a class="navbar-brand" href="about.php">About Us</a>
-        </nav>
+              <a class="navbar-brand" href="register.php">Register</a>
+              <a class="navbar-brand" href="login.php">My Account</a>
+              <a class="navbar-brand" href="about.php">About Us</a>
+            </nav>
           </footer>
         </html>
